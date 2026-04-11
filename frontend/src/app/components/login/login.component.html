@@ -1,0 +1,38 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Employee Management System</mat-card-title>
+      <mat-card-subtitle>Login to your account</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username or Email</mat-label>
+          <input matInput formControlName="usernameOrEmail" type="text" required>
+          <mat-error *ngIf="loginForm.get('usernameOrEmail')?.hasError('required')">
+            Username or email is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password" required>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" 
+                [disabled]="!loginForm.valid || loading" class="full-width">
+          <span *ngIf="!loading">Login</span>
+          <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+        </button>
+      </form>
+
+      <div class="signup-link">
+        <p>Don't have an account? <a routerLink="/signup">Sign up here</a></p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

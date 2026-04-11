@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "comp3133-101504303-assignment1",
+		"name": "COMP3133_101504303_Assignment1",
+		"description": "GraphQL API for Employee Management System\n\nStudent ID: 101504303\nAuthor: Uzma Shaikh\n\nInstructions:\n1. Run 'npm install' to install dependencies\n2. Run 'npm start' to start the server\n3. Server will run on http://localhost:4000\n4. GraphQL endpoint: http://localhost:4000/graphql",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Operations",
+			"item": [
+				{
+					"name": "User Signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Signup($input: SignupInput!) {\n  signup(input: $input) {\n    id\n    username\n    email\n    created_at\n    updated_at\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"username\": \"testuser\",\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/graphql",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Register a new user account"
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Login($input: LoginInput!) {\n  login(input: $input) {\n    token\n    user {\n      id\n      username\n      email\n      created_at\n      updated_at\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"usernameOrEmail\": \"testuser\",\n    \"password\": \"password123\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/graphql",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Login with username/email and password"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee Operations",
+			"item": [
+				{
+					"name": "Get All Employees",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetAllEmployees {\n  getAllEmployees {\n    id\n    first_name\n    last_name\n    email\n    gender\n    designation\n    salary\n    date_of_joining\n    department\n    employee_photo\n    created_at\n    updated_at\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/graphql",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Retrieve all employees from the database"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee by ID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetEmployeeById($id: ID!) {\n  getEmployeeById(id: $id) {\n    id\n    first_name\n    last_name\n    email\n    gender\n    designation\n    salary\n    date_of_joining\n    department\n    employee_photo\n    created_at\n    updated_at\n  }\n}",
+								"variables": "{\n  \"id\": \"REPLACE_WITH_EMPLOYEE_ID\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/graphql",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Get a specific employee by their ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Employees",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query SearchEmployees($designation: String, $department: String) {\n  searchEmployees(designation: $designation, department: $department) {\n    id\n    first_name\n    last_name\n    email\n    designation\n    department\n    salary\n  }\n}",
+								"variables": "{\n  \"designation\": \"Software Engineer\",\n  \"department\": \"Engineering\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/graphql",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Search employees by designation and/or department"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddEmployee($input: EmployeeInput!) {\n  addEmployee(input: $input) {\n    id\n    first_name\n    last_name\n    email\n    gender\n    designation\n    salary\n    date_of_joining\n    department\n    employee_photo\n    created_at\n    updated_at\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"gender\": \"Male\",\n    \"designation\": \"Software Engineer\",\n    \"salary\": 75000,\n    \"date_of_joining\": \"2024-01-15\",\n    \"department\": \"Engineering\",\n    \"employee_photo\": \"https://example.com/photo.jpg\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/graphql",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Add a new employee to the database"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation UpdateEmployee($id: ID!, $input: EmployeeUpdateInput!) {\n  updateEmployeeById(id: $id, input: $input) {\n    id\n    first_name\n    last_name\n    email\n    designation\n    salary\n    department\n    updated_at\n  }\n}",
+								"variables": "{\n  \"id\": \"REPLACE_WITH_EMPLOYEE_ID\",\n  \"input\": {\n    \"designation\": \"Senior Software Engineer\",\n    \"salary\": 85000\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/graphql",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Update an existing employee's information"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DeleteEmployee($id: ID!) {\n  deleteEmployeeById(id: $id)\n}",
+								"variables": "{\n  \"id\": \"REPLACE_WITH_EMPLOYEE_ID\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/graphql",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Delete an employee from the database"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:4000",
+			"type": "string"
+		}
+	]
+}

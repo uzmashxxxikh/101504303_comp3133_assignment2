@@ -1,0 +1,56 @@
+<h2 mat-dialog-title>Employee Details</h2>
+
+<mat-dialog-content>
+  <div class="employee-details">
+    <div class="photo-section">
+      <img [src]="employee.employee_photo || 'assets/placeholder.png'" 
+           alt="Employee photo" class="employee-photo-large">
+    </div>
+
+    <div class="details-grid">
+      <div class="detail-item">
+        <label>First Name:</label>
+        <span>{{ employee.first_name }}</span>
+      </div>
+
+      <div class="detail-item">
+        <label>Last Name:</label>
+        <span>{{ employee.last_name }}</span>
+      </div>
+
+      <div class="detail-item">
+        <label>Email:</label>
+        <span>{{ employee.email }}</span>
+      </div>
+
+      <div class="detail-item">
+        <label>Gender:</label>
+        <span>{{ employee.gender || 'N/A' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <label>Designation:</label>
+        <span>{{ employee.designation }}</span>
+      </div>
+
+      <div class="detail-item">
+        <label>Department:</label>
+        <span>{{ employee.department }}</span>
+      </div>
+
+      <div class="detail-item">
+        <label>Salary:</label>
+        <span>{{ employee.salary | currency }}</span>
+      </div>
+
+      <div class="detail-item">
+        <label>Date of Joining:</label>
+        <span>{{ employee.date_of_joining | date:'longDate' }}</span>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Close</button>
+</mat-dialog-actions>
