@@ -1,5 +1,8 @@
 # COMP3133 Assignment 1 – Employee Management GraphQL API
 
+Frontend: https://frontend-101504303.vercel.app/login
+Backend: https://backend-101504303.vercel.app/
+
 Backend application for **COMP3133 – Full Stack Development II** Assignment 1.  
 This project implements an **Employee Management System** backend using **Node.js, Express, Apollo GraphQL, and MongoDB Atlas**.
 
